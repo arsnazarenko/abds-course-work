@@ -20,4 +20,4 @@ upload-clf-samples:
 upload-syslog-samples:
 	curl -X POST "http://localhost:8080/logs/upload" -H  "accept: application/json" -H  "Content-Type: multipart/form-data" -F "file=@log-collector/samples/logs.syslog"
 
-.PHONY: up clean kill-generator upload-json-samples upload-syslog-samples upload-clf-samples init
+.PHONY: up stop kill-generator upload-json-samples upload-syslog-samples upload-clf-samples init
