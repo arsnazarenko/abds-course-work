@@ -1,0 +1,3 @@
+[submodule "log-collector"]
+	path = log-collector
+	url = ../log-collector.git
