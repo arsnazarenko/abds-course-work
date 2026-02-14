@@ -179,5 +179,23 @@ services:
       rmq3:
         condition: service_healthy
 
+  superset:
+    build:
+      context: superset
+      dockerfile: Dockerfile.superset
+    container_name: superset
+    ports:
+      - "8088:8088"
+    environment:
+      SUPERSET_SECRET_KEY: "supersecretkey"
+      SUPERSET_CONFIG_PATH: /app/pythonpath/superset_config.py
+    volumes:
+      - ./superset/superset_config.py:/app/pythonpath/superset_config.py:ro
+      - ./superset/superset_import:/app/import
+    command: ["/entrypoint.sh"]
+    depends_on:
+      ch1:
+        condition: service_started
+
 include:
   - docker-compose-airflow.yaml
