@@ -10,8 +10,8 @@ services:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
       RABBITMQ_ERLANG_COOKIE: log-collector-cookie
-    volumes:
-      - /tmp/rabbitmq/rmq1:/var/lib/rabbitmq
+    # volumes:
+    #   - rabbitmq-volumes/rmq1:/var/lib/rabbitmq
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "check_running"]
       interval: 10s
@@ -30,8 +30,8 @@ services:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
       RABBITMQ_ERLANG_COOKIE: log-collector-cookie
-    volumes:
-      - /tmp/rabbitmq/rmq2:/var/lib/rabbitmq
+    # volumes:
+    #   - rabbitmq-volumes/rmq2:/var/lib/rabbitmq
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "check_running"]
       interval: 10s
@@ -50,8 +50,8 @@ services:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
       RABBITMQ_ERLANG_COOKIE: log-collector-cookie
-    volumes:
-      - /tmp/rabbitmq/rmq3:/var/lib/rabbitmq
+    # volumes:
+    #   - rabbitmq-volumes/rmq3:/var/lib/rabbitmq
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "check_running"]
       interval: 10s
@@ -72,7 +72,7 @@ services:
       - ./clickhouse/config.xml:/etc/clickhouse-server/config.d/local.xml:ro
       - ./clickhouse/macro1.xml:/etc/clickhouse-server/config.d/macros.xml:ro
       - ./clickhouse/keeper1.xml:/etc/clickhouse-server/config.d/keeper.xml:ro
-      - /tmp/clickhouse/ch1-data:/var/lib/clickhouse
+      # - clickhouse-volumes/ch1-data:/var/lib/clickhouse
     ports:
       - '8123:8123'
       - '9000:9000'
@@ -94,7 +94,7 @@ services:
       - ./clickhouse/config.xml:/etc/clickhouse-server/config.d/local.xml:ro
       - ./clickhouse/macro2.xml:/etc/clickhouse-server/config.d/macros.xml:ro
       - ./clickhouse/keeper2.xml:/etc/clickhouse-server/config.d/keeper.xml:ro
-      - /tmp/clickhouse/ch2-data:/var/lib/clickhouse
+      # - clickhouse-volumes/ch2-data:/var/lib/clickhouse
     ports:
       - '8124:8123'
       - '9001:9000'
@@ -119,7 +119,7 @@ services:
       - ./clickhouse/config.xml:/etc/clickhouse-server/config.d/local.xml:ro
       - ./clickhouse/macro3.xml:/etc/clickhouse-server/config.d/macros.xml:ro
       - ./clickhouse/keeper3.xml:/etc/clickhouse-server/config.d/keeper.xml:ro
-      - /tmp/clickhouse/ch3-data:/var/lib/clickhouse
+      # - clickhouse-volumes/ch3-data:/var/lib/clickhouse
     ports:
       - '8125:8123'
       - '9002:9000'

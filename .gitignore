@@ -1,3 +1,4 @@
 log-collector/
 AGENTS.md
-logs/
+airflow/logs/
+airflow/dags/__pycache__/
