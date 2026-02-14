@@ -84,7 +84,7 @@ create_data_marts = ClickHouseOperator(
             ORDER BY (source, log_count)
         ''',
         '''
-            CREATE TABLE IF NOT EXISTS dm_logs_over_creatiion_time ON CLUSTER '{cluster}' (
+            CREATE TABLE IF NOT EXISTS dm_logs_over_creation_time ON CLUSTER '{cluster}' (
                 time_slot DateTime,
                 total_logs UInt64,
                 error_logs UInt64,
@@ -93,7 +93,7 @@ create_data_marts = ClickHouseOperator(
                 debug_logs UInt64,
                 critical_logs UInt64
             ) ENGINE = ReplicatedMergeTree(
-                '/clickhouse/tables/dm_logs_over_creatiion_time',
+                '/clickhouse/tables/dm_logs_over_creation_time',
                 '{replica}'
             )
             ORDER BY time_slot
@@ -239,10 +239,10 @@ aggregate_over_time = ClickHouseOperator(
     database='default',
     sql=[
         '''
-            TRUNCATE TABLE IF EXISTS dm_logs_over_creatiion_time ON CLUSTER '{cluster}'
+            TRUNCATE TABLE IF EXISTS dm_logs_over_creation_time ON CLUSTER '{cluster}'
         ''',
         '''
-            INSERT INTO dm_logs_over_creatiion_time
+            INSERT INTO dm_logs_over_creation_time
             SELECT
                 toStartOfFiveMinutes(created_at) AS time_slot,
                 count() AS total_logs,
