@@ -1,6 +1,8 @@
 init:
 	mkdir -p ./airflow/{dags,logs,plugins,config}
-	docker compose up airflow-init
+	mkdir -p ./volumes/{prometheus-data,grafana-data} && chmod 777 ./volumes/{prometheus-data,grafana-data}
+	mkdir -p ./volumes/{rmq1-data,rmq2-data,rmq3-data} && chmod 777 ./volumes/{rmq1-data,rmq2-data,rmq3-data}
+	mkdir -p ./volumes/{ch1-data,ch2-data,ch3-data} && chmod 777 ./volumes/{ch1-data,ch2-data,ch3-data}
 
 up:
 	docker compose up --build -d

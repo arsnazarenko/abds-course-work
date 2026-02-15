@@ -13,6 +13,8 @@
 git clone --recurse-submodules https://github.com/arsnazarenko/abds-course-work.git && cd abds-course-work
 make init
 make up
+...
+make stop
 ```
 
 ### Доступные сервисы
@@ -31,7 +33,6 @@ make up
 | Superset | http://localhost:8088 | admin | admin |
 | Airflow Web UI | http://localhost:8081 | airflow | airflow |
 
-
 ### Полезные команды
 
 ```bash
@@ -43,4 +44,3 @@ make upload-syslog-samples  # Загрузка Syslog примеров
 ```
 
 > После остановки всех сервисов необходимо удалить из ./volumes данные контейнеров. Может потребоваться sudo
-
