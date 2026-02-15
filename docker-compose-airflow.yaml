@@ -50,7 +50,9 @@ x-airflow-common:
   # Comment the image line, place your Dockerfile in the directory where you placed the docker-compose.yaml
   # and uncomment the "build" line below, Then run `docker-compose build` to build the images.
   # image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:3.1.7}
-  build: .
+  build:
+    context: airflow
+    dockerfile: Dockerfile.airflow
   env_file:
     - ${ENV_FILE_PATH:-.env}
   environment:
@@ -122,6 +124,8 @@ services:
     command: api-server
     ports:
       - "8081:8080"
+    # environment:
+    #     AIRFLOW__CONNECTIONS__CLICKHOUSE_DEFAULT: "${CLICKHOUSE_CONNECTION_URI}"
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:8080/api/v2/version"]
       interval: 30s
@@ -133,6 +137,8 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
+      ch1:
+        condition: service_started
 
   airflow-scheduler:
     <<: *airflow-common
