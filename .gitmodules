@@ -1,4 +1,4 @@
 [submodule "log-collector"]
 	path = log-collector
     url = ../log-collector.git
-    branch = feat/log-collector-impl
+    branch = feat/metrics
