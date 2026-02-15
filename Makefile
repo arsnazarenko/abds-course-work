@@ -1,10 +1,12 @@
-stop:
-	docker compose down --volumes --remove-orphans
-
-up:
+init:
 	mkdir -p ./airflow/{dags,logs,plugins,config}
 	docker compose up airflow-init
+
+up:
 	docker compose up --build -d
+
+stop:
+	docker compose down --volumes --remove-orphans
 
 kill-generator:
 	docker kill generator
@@ -18,4 +20,4 @@ upload-clf-samples:
 upload-syslog-samples:
 	curl -X POST "http://localhost:8080/logs/upload" -H  "accept: application/json" -H  "Content-Type: multipart/form-data" -F "file=@log-collector/samples/logs.syslog"
 
-.PHONY: up clean kill-generator upload-json-samples upload-syslog-samples upload-clf-samples
+.PHONY: up clean kill-generator upload-json-samples upload-syslog-samples upload-clf-samples init
