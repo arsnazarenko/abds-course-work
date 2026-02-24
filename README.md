@@ -44,3 +44,10 @@ make upload-syslog-samples  # Загрузка Syslog примеров
 ```
 
 > После остановки всех сервисов необходимо удалить из ./volumes данные контейнеров. Может потребоваться sudo
+
+### Grafana metrics visualisation:
+![grafana_metrics](resources/grafana.png)
+
+### Superset visualisations:
+![superset1](resources/superset_1.png)
+![superset2](resources/superset_2.png)
